@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Vulcan - login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="logo">
+                <img src="/img/logo/logo.png" alt="V">
+                <p>VULCAN</p>
+            </div>
+            <div class="form_container">
+                <h1>Welcome back</h1>
+                <p>Please enter your contact details to connect.</p>
+                <form class="form">
+                    <label for="email">
+                        Email address
+                    </label><br>
+                    <input type="email" name="email" placeholder="name@compagny.com" id="email"><br>
+
+                    <label for="pass">
+                        Password
+                    </label><br>
+                    <input type="password" name="pass" placeholder="*********" id="pass"><br>
+                    
+                    <div class="checkbox_container">
+                        <input type="checkbox" name="checkbox" id="checkbox" onclick="changeTypeInput(this)">
+                        <label for="checkbox">Show password</label>
+                    </div>
+
+                    <button class="btn">
+                        Log in
+                    </button>
+
+                </form>
+            </div>
+        </div>
+        <div class="right">
+            <img src="/img/login/right_img.png" alt="gradient">
+        </div>
+    </div>
+    <script>
+        function changeTypeInput(input){
+            if(input.checked){
+                document.querySelector('#pass').setAttribute('type', 'text')
+            }
+            else{
+                document.querySelector('#pass').setAttribute('type', 'password')
+            }
+        }
+    </script>
+</body>
+</html>
