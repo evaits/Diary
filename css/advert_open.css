@@ -46,6 +46,7 @@ hr {
 /* MENU */
 .menu {
     margin-right: 100px;
+    position: fixed;
 }
 /* Unactive */
 .link {
@@ -72,10 +73,6 @@ hr {
 }
 
 /* Active */
-.active_link {
-    pointer-events: none;
-}
-
 .active_link_container{
     width: 100%;
     background: #00C2FF;
@@ -114,102 +111,43 @@ hr {
     height: 32px;
 }
 
-/* Main */
+/* MAIN */
 .main {
-    padding-top: 20px;
-    margin-left: 35px;
+    padding-top: 50px;
+    margin-left: 360px;
 }
 
 .title {
     font-family: 'Poppins';
     font-style: normal;
+    font-weight: 600;
+    font-size: 70px;
+    line-height: 22px;
+    margin-bottom: 42px;
+    margin-left: 10px;
+}
+
+.background {
+    width: 98%;
+    margin-bottom: 13px;
+}
+
+.content_title {
+    font-family: 'Poppins';
+    font-style: normal;
     font-weight: 500;
-    font-size: 96px;
-    line-height: 120%;
-    color: #2B2B2B;
-    margin-bottom: 22px;
+    font-size: 55px;
+    line-height: 114.97%;
+    text-align: center;
+    letter-spacing: 0.01em;
+    margin-bottom: 10px;
 }
 
-/* About Student */
-.aboutStudent {
-    display: flex;
-    margin-bottom: 35px;
-}
-
-.aboutStudent img{
-    margin-right: 20px;
-    width: 98px;
-    height: 98px;
-}
-
-.aboutStudent_text {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.aboutStudent_text p {
+.content p {
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 130%;
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.1px;
-    color: #00AB59;
-    margin-bottom: 5px;
-}
-
-.aboutStudent .studentName {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 33px;
-    display: flex;
-    align-items: center;
-    color: #000000;
-}
-
-/* About Diary */
-.aboutDiary {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 22px;
-    line-height: 120%;
-    color: #000000;
-    margin-left: 67px;
-    margin-bottom: 40px;
-}
-
-.info {
-    display: flex;
-    width: calc(100% + 40px);
-    justify-content: space-between;
-    margin-bottom: 60px;
-}
-
-.info ul li {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 24px;
-    line-height: 120%;
-    margin-left: 100px;
-}
-
-.info img {
-    width: 206px;
-    height: 206px;
-}
-
-/* Autor */
-.autor {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 100;
-    font-size: 20px;
-    line-height: 120%;
-    float: right;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 114.97%;
+    letter-spacing: -0.04em;
 }

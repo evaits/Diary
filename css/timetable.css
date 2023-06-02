@@ -46,6 +46,7 @@ hr {
 /* MENU */
 .menu {
     margin-right: 100px;
+    position: fixed;
 }
 /* Unactive */
 .link {
@@ -105,35 +106,46 @@ hr {
     height: 31px;
 }
 
+.timetable_img {
+    width: 25px;
+    height: 25px;
+}
+
 .adverts_img,
 .grades_img,
-.timetable_img,
 .teacherList_img,
 .aboutStudent_img {
     width: 32px;
     height: 32px;
 }
 
-/* Main */
+/* MAIN */
 .main {
-    padding-top: 20px;
-    margin-left: 35px;
+    padding-top: 11px;
+    margin-left: 310px;
+}
+
+.header {
+    display: flex;
+    margin-bottom: 35px;
 }
 
 .title {
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 500;
-    font-size: 96px;
-    line-height: 120%;
-    color: #2B2B2B;
-    margin-bottom: 22px;
+    font-weight: 600;
+    font-size: 70px;
+    line-height: 22px;
+    color: #000000;
+    margin-bottom: auto;
+    margin-top: auto;
+    margin-right: 300px;
+    margin-left: 30px;
 }
 
 /* About Student */
 .aboutStudent {
     display: flex;
-    margin-bottom: 35px;
 }
 
 .aboutStudent img{
@@ -171,45 +183,63 @@ hr {
     color: #000000;
 }
 
-/* About Diary */
-.aboutDiary {
+.klas {
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 200;
-    font-size: 22px;
-    line-height: 120%;
-    color: #000000;
-    margin-left: 67px;
-    margin-bottom: 40px;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 150%;
+    text-align: center;
 }
 
-.info {
-    display: flex;
-    width: calc(100% + 40px);
-    justify-content: space-between;
-    margin-bottom: 60px;
-}
-
-.info ul li {
-    font-family: 'Roboto';
+/* TABLE */
+th {
+    font-family: 'Inter';
     font-style: normal;
-    font-weight: 200;
-    font-size: 24px;
-    line-height: 120%;
-    margin-left: 100px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #333333;
+    background: #EEEEEE;
+    text-align: left;
+    padding: 8px;
+    /* padding-right: 60px; */
 }
 
-.info img {
-    width: 206px;
-    height: 206px;
+th:not(:last-child) {
+    border-right: 0.1px white solid;
 }
 
-/* Autor */
-.autor {
-    font-family: 'Roboto';
+.subject {
+    font-family: 'Inter';
     font-style: normal;
-    font-weight: 100;
-    font-size: 20px;
-    line-height: 120%;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    color: #333333;
+    padding-left: 10px;
+    width: 200px;
+}
+
+.nr {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    text-align: center;
+    color: #333333;
+    padding: 8px;
+}
+
+.footer {
+    margin-top: 90px;
+}
+
+.footer p {
     float: right;
+}
+
+.footer a {
+    text-decoration: underline;
 }

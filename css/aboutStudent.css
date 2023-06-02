@@ -46,6 +46,7 @@ hr {
 /* MENU */
 .menu {
     margin-right: 100px;
+    position: fixed;
 }
 /* Unactive */
 .link {
@@ -107,33 +108,38 @@ hr {
 
 .adverts_img,
 .grades_img,
-.timetable_img,
 .teacherList_img,
+.timetable_img,
 .aboutStudent_img {
     width: 32px;
     height: 32px;
 }
 
-/* Main */
+/* MAIN */
 .main {
-    padding-top: 20px;
-    margin-left: 35px;
+    padding-top: 11px;
+    margin-left: 360px;
+}
+
+.header {
+    margin-bottom: 65px;
 }
 
 .title {
-    font-family: 'Poppins';
+    font-family: 'Roboto';
     font-style: normal;
-    font-weight: 500;
-    font-size: 96px;
-    line-height: 120%;
-    color: #2B2B2B;
-    margin-bottom: 22px;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 130%;
+    letter-spacing: 0.1px;
+    color: #000000;
+    margin-bottom: 44px;
 }
 
 /* About Student */
 .aboutStudent {
     display: flex;
-    margin-bottom: 35px;
+    margin-bottom: 34px;
 }
 
 .aboutStudent img{
@@ -171,45 +177,55 @@ hr {
     color: #000000;
 }
 
-/* About Diary */
-.aboutDiary {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 200;
-    font-size: 22px;
-    line-height: 120%;
-    color: #000000;
-    margin-left: 67px;
-    margin-bottom: 40px;
-}
-
-.info {
+/* CONTENT */
+.content {
+    width: calc(100vw - 550px);
     display: flex;
-    width: calc(100% + 40px);
     justify-content: space-between;
-    margin-bottom: 60px;
+    align-items: center;
 }
 
-.info ul li {
+.content h2 {
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 200;
-    font-size: 24px;
-    line-height: 120%;
-    margin-left: 100px;
+    font-weight: 400;
+    font-size: 16px;
+    /* line-height: 24px; */
+    color: #000000;
+    margin-bottom: 10px;
 }
 
-.info img {
-    width: 206px;
-    height: 206px;
-}
-
-/* Autor */
-.autor {
+.dataTitle {
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 100;
-    font-size: 20px;
-    line-height: 120%;
-    float: right;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 130%;
+    letter-spacing: 0.1px;
+    color: #747474;
+    margin-bottom: 10px;
+}
+
+.data {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: 0.1px;
+    color: #000000;
+    background: #EFE3E3;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-width: 110px;
+    /* width: 100%; */
+    margin-bottom: 16px;
+}
+
+.father {
+    margin-top: 27px;
 }
