@@ -26,21 +26,21 @@
             </div>
             <hr>
             <div class="links">
-                <a href="home.html" class="link">
+                <a href="home.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/home.png" alt="img" class="home_img">
                         <p>Home</p>
                     </div>
                 </a>
 
-                <a href="adverts.html" class="active_link link">
+                <a href="adverts.php" class="active_link link">
                     <div class="active_link_container">
                         <img src="../img/menu/adverts_active.png" alt="img" class="adverts_img">
                         <p>Adverts</p>
                     </div>
                 </a>
                 
-                <a href="grades.html" class="link">
+                <a href="grades.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/grades.png" alt="img" class="grades_img">
                         <p>Grades</p> 
@@ -54,14 +54,14 @@
                     </div>
                 </a>
 
-                <a href="../html/teacherList.html" class="link">
+                <a href="teacherList.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/teacherList.png" alt="img" class="teacherList_img">
                         <p>List of teachers</p>
                     </div>
                 </a>
 
-                <a href="aboutStudent.html" class="link">
+                <a href="aboutStudent.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/student.png" alt="img" class="aboutStudent_img">
                         <p>About Student</p>
@@ -76,51 +76,24 @@
                 <h1 class="title">
                     Adverts for you
                 </h1>
-                <a href="addAvert.html"><img src="../img/adverts/plus.png" alt="plus"></a>
+                <a href="addAdvert.php"><img src="../img/adverts/plus.png" alt="plus"></a>
             </div>
             <div class="content">
-                <a href="advert_open.html" class="poster">
-                    <img src="../img/adverts/advert_img.png" alt="picture">
-                    <p>
-                        Miło mi poinformować, że uczennica klasy graficznej 2d - JULIA OLEKSY wygrała finałowe miejsce w końcowym 
-                    </p>
-                </a>
-                <a href="#!" class="poster">
-                    <img src="../img/adverts/advert_img.png" alt="picture">
-                    <p>
-                        Miło mi poinformować, że uczennica klasy graficznej 2d - JULIA OLEKSY wygrała finałowe miejsce w końcowym 
-                    </p>
-                </a>
-                <a href="#!" class="poster">
-                    <img src="../img/adverts/advert_img.png" alt="picture">
-                    <p>
-                        Miło mi poinformować, że uczennica klasy graficznej 2d - JULIA OLEKSY wygrała finałowe miejsce w końcowym 
-                    </p>
-                </a>
-                <a href="#!" class="poster">
-                    <img src="../img/adverts/advert_img.png" alt="picture">
-                    <p>
-                        Miło mi poinformować, że uczennica klasy graficznej 2d - JULIA OLEKSY wygrała finałowe miejsce w końcowym 
-                    </p>
-                </a>
-                <a href="#!" class="poster">
-                    <img src="../img/adverts/advert_img.png" alt="picture">
-                    <p>
-                        Miło mi poinformować, że uczennica klasy graficznej 2d - JULIA OLEKSY wygrała finałowe miejsce w końcowym 
-                    </p>
-                </a>
-                <a href="#!" class="poster">
-                    <img src="../img/adverts/advert_img.png" alt="picture">
-                    <p>
-                        Miło mi poinformować, że uczennica klasy graficznej 2d - JULIA OLEKSY wygrała finałowe miejsce w końcowym 
-                    </p>
-                </a>
-                <a href="#!" class="poster">
-                    <img src="../img/adverts/advert_img.png" alt="picture">
-                    <p>
-                        Miło mi poinformować, że uczennica klasy graficznej 2d - JULIA OLEKSY wygrała finałowe miejsce w końcowym 
-                    </p>
-                </a>
+                <?php
+                    require 'connect.php';
+                    $adverts = mysqli_query($conn, "SELECT * FROM `adverts`");
+                    while($advert = $adverts->fetch_assoc()){
+                        echo '
+                        <a href="advert_open.php?id='. $advert['id'] .'" class="poster">
+                            <img src="../img/adverts/advert_img.png" alt="picture">
+                            <p>
+                                '. substr($advert['content'], 0, 130) .'
+                            </p>
+                        </a>'; 
+                    }
+                ?>
+                
+                
             </div>
         </main>
     </div>

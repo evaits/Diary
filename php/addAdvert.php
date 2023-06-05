@@ -29,28 +29,28 @@
             </div>
             <hr>
             <div class="links">
-                <a href="home.html" class="link">
+                <a href="home.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/home.png" alt="img" class="home_img">
                         <p>Home</p>
                     </div>
                 </a>
 
-                <a href="adverts.html" class="active_link link">
+                <a href="adverts.php" class="active_link link">
                     <div class="active_link_container">
                         <img src="../img/menu/adverts_active.png" alt="img" class="adverts_img">
                         <p>Adverts</p>
                     </div>
                 </a>
                 
-                <a href="grades.html" class="link">
+                <a href="grades.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/grades.png" alt="img" class="grades_img">
                         <p>Grades</p> 
                     </div>
                 </a>
 
-                <a href="../html/timetable.html" class="link">
+                <a href="../html/timetable.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/timetable.png" alt="img" class="timetable_img">
                         <p>Timetable</p>
@@ -64,7 +64,7 @@
                     </div>
                 </a>
 
-                <a href="aboutStudent.html" class="link">
+                <a href="aboutStudent.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/student.png" alt="img" class="aboutStudent_img">
                         <p>About Student</p>
@@ -79,7 +79,24 @@
                 Add Advert
             </h1>
                 
-            <form>
+            <?php 
+                if(isset($_POST['them']) and isset($_POST['content']) and strlen($_POST['them']) > 2 ){
+                    if(strlen($_POST['them']) < 22 and strlen($_POST['content']) > 50 and strlen($_POST['content']) < 10000){
+                        require 'connect.php';
+                        $stmt = mysqli_query($conn, "INSERT INTO `adverts`(title, content) VALUES ('". $_POST['them'] ."', '". $_POST['content'] ."')");
+                        header('Location: adverts.php');
+                    }
+                    else{
+                        setcookie('error', '1', time() + 2, "/");
+                        header('Location: addAdvert.php');
+                    }
+                }
+                if(isset($_COOKIE['error'])){
+                    echo 'dsa';
+                }
+            ?>
+
+            <form action='addAdvert.php' method='POST'>
                 <label for="them">Them</label><br>
                 <input type="text" name="them" id="them" max="10"><br>
                 <label for="content">
