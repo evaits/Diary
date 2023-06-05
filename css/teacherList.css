@@ -180,6 +180,10 @@ hr {
 }
 
 /* TABLE */
+.content {
+    height: calc(100% - 250px);
+}
+
 th {
     font-family: 'Inter';
     font-style: normal;
@@ -220,7 +224,7 @@ th:not(:last-child) {
 }
 
 .footer {
-    margin-top: 90px;
+    margin-top: 50px;
 }
 
 .footer p {

@@ -20,7 +20,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link rel="shortcut icon" href="/img/logo/logo2.png" type="image/x-icon">
+    <title>Vulcan | Grades</title>
 </head>
 <body>
     <div class="container">
@@ -59,7 +60,7 @@
                     </div>
                 </a>
 
-                <a href="/html/teacherList.html" class="link">
+                <a href="teacherList.html" class="link">
                     <div class="link_container">
                         <img src="/img/menu/teacherList.png" alt="img" class="teacherList_img">
                         <p>List of teachers</p>
@@ -246,6 +247,74 @@
                   </table>
             </div>
         </main>
+        <div class="footer">
+            <h2>
+                Add grades:
+            </h2>
+            <form>
+                <label>
+                    <h3>Subject:</h3>
+                    <select name="subject">
+                        <option selected value="Database">Database</option>
+                        <option value="Biology">Biology</option>                        <option value="Chemistry">Chemistry</option>
+                        <option value="Systemy baz danych">Systemy baz danych</option>
+                        <option value="Zastosowania informatyki">Zastosowania informatyki</option>
+                        <option value="Język polski">Język polski</option>
+                        <option value="Historia">Historia</option>
+                        <option value="Język angielski">Język angielski</option>
+                        <option value="T. stron i aplikacji">T. stron i aplikacji</option>
+                        <option value="Wychowanie fizyczne">Wychowanie fizyczne</option>
+                        <option value="Religia">Religia</option>
+                        <option value="Historia i teraźniejszość">Historia i teraźniejszość</option>
+                        <option value="Matematyka">Matematyka</option>
+                        <option value="Informatyka">Informatyka</option>
+                        <option value="Edukacja dla bezpieczeństwa">Edukacja dla bezpieczeństwa</option>
+                        <option value="Witryny i aplikacje internetowe">Witryny i aplikacje internetowe</option>
+                        <option value="Filozofia">Filozofia</option>
+                        
+                    </select>
+                </label>
+                <label>
+                    <h3>Type:</h3>
+                    <select name="type">
+                        <option selected value="Kartkówka">Kartkówka</option>
+                        <option value="Sprawdzian">Sprawdzian</option>
+                        <option value="Praca domowa">Praca domowa</option>
+                        <option value="Praca na lekcji">Praca na lekcji</option>
+                    </select>
+                </label>
+                <label>
+                    <h3>Period:</h3>
+                    <select name="ocena">
+                        <option value="1">1 Period</option>
+                        <option value="2">2 Period</option>
+                    </select>
+                </label>
+                <label>
+                    <h3>Ocena:</h3>
+                    <select name="ocena">
+                        <option value="1">1</option>
+                        <option value="1+">1+</option>
+                        <option value="2-">2-</option>
+                        <option value="2">2</option>
+                        <option value="2+">2+</option>
+                        <option value="3-">3-</option>
+                        <option value="3">3</option>
+                        <option value="3+">3+</option>
+                        <option value="4-">4-</option>
+                        <option value="4">4</option>
+                        <option value="4+">4+</option>
+                        <option value="5-">5-</option>
+                        <option value="5">5</option>
+                        <option value="5+">5+</option>
+                        <option value="6">6</option>
+                    </select>
+                </label>
+                <button class="btn">
+                    Add
+                </button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

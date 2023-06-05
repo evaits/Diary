@@ -4,7 +4,6 @@ body {
 }
 
 .container {
-    display: flex;
     margin-right: auto;
     margin-left: auto;
     padding-left: 19px;
@@ -119,6 +118,7 @@ hr {
 .main {
     padding-top: 11px;
     margin-left: 380px;
+    height: calc(100% - 100px);
 }
 
 .header {
@@ -135,7 +135,7 @@ hr {
     color: #000000;
     margin-bottom: auto;
     margin-top: auto;
-    margin-right: 300px;
+    margin-right: 290px;
 }
 
 /* About Student */
@@ -273,4 +273,107 @@ th:not(:last-child) {
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 5px;
+}
+
+.footer {
+    margin-left: 380px;
+    height: 60px;
+}
+
+.footer h2 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0.1px;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+form {
+    display: flex;
+}
+
+select {
+    width: 140px;
+    height: 30px;
+    padding: 3px;
+    margin-left: 5px;
+    padding-left: 8px; 
+    border-radius:4px;
+    box-shadow: 2px 2px 8px #999;
+    background: #eee;
+    border: none;
+    outline: none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+label {
+    position: relative;
+    font-size: 13px;
+    display: flex;
+    margin-right: 30px;
+}
+
+label h3 {
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+label:after {
+    content:'<>';
+    font: 11px "Consolas", monospace;
+    color: #666;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 8px; 
+    top:7px;
+    padding: 0 0 2px;
+    border-bottom: 1px solid #ddd;
+    position: absolute;
+    pointer-events: none;
+}
+label:before {
+    content: '';
+    right: 6px; 
+    top:2px;
+    width: 20px; 
+    height: 20px;
+    background: #eee;
+    position: absolute;
+    pointer-events: none;
+    display: block;
+}
+
+.btn{
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: #7a7a7a;
+    padding: 5px 20px;
+    border: 2px solid #7a7a7a;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 11px;
+    transition : 1000ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn:hover{
+    transition : 1000ms;
+    transform : translateY(-0px);
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
 }

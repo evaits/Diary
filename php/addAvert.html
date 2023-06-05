@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Styles -->
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/advert_open.css">
+    <link rel="stylesheet" href="/css/addAdvert.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +16,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="/img/logo/logo2.png" type="image/x-icon">
-    <title>Vulcan | Advert</title>
+    <title>Vulcan | Add Advert</title>
 </head>
 <body>
     <div class="container">
@@ -75,40 +75,28 @@
         </div>
 
         <main class="main">
-            <div class="header">
-                <h1 class="title">
-                    Advert
-                </h1>
-                <img onclick="dell('nr')" src="/img/adverts/delete.png" alt="delete">
-            </div>
-            <img src="/img/adverts/big_advertImg.png" alt="picture" class="background">
-            <div class="content">
-                <h2 class="content_title">
-                    Konkurs Palcem po mapie
-                </h2>
-                <p>
-                    - Mamy do czynienia z kryzysem polskiej obronności - powiedział Cezary Tomczyk podczas konferencji prasowej w Sejmie. Razem z Tomaszem Siemoniakiem poinformowali o złożeniu wniosku do prokuratury, w sprawie wydarzeń z 16 grudnia, kiedy pod Bydgoszczą spadła rakieta.
-                    - Chcemy zawiadomić o możliwości popełnienia przestępstwa przez premiera Morawieckiego, w związku z niedopełnieniem obowiązków, w związku z tym, że kłamał opinię publiczną, w związku z tym, że o sprawie rakiety pod Bydgoszczą wiedział od samego początku. Przez pięć miesięcy, gdy rakieta leżała gdzieś w lesie, nie zrobiono nic - podkreślał Tomczyk.
-                    Wcześniej o sprawie napisała "Rzeczpospolita". Z ustaleń gazety wynika, że kiedy 16 grudnia dowódca operacyjny poinformował o "niezidentyfikowanym obiekcie nieznanego pochodzenia" premiera.
-                    Nieodebrany telefon, służby powiadomione
-                    Zadzwonił do Morawieckiego. Początkowo szef rządu nie odebrał telefonu. W tym czasie generał Piotrowski poinformował o sprawie służbę dyżurną ministra obrony oraz szefa Sztabu Generalnego Wojska Polskiego.
-                    Morawiecki oddzwonił do generała i wtedy miał się dowiedzieć o nieznanym obiekcie. Co więcej, informacja o nim oraz o informowanych osobach ma się znajdować w dokumentach Centrum Operacji Powietrznych z 17 grudnia. "Rzeczpospolita" ustaliła, że raport został zabezpieczony przez Najwyższą Izbę Kontroli.
-                    ZOBACZ: Obiekt pod Bydgoszczą. Mariusz Błaszczak: Dowódca operacyjny zaniechał swoich obowiązków
-                    Minister Błaszczak twierdził 11 maja, że dowódca operacyjny - generał Tomasz Piotrowski "zaniechał swoich instrukcyjnych obowiązków" i nie poinformował ministra o sprawie.
-                    - Doszło do tego, że na Polskę spadła rakieta, której nikt nie szukał i doszło do próby mataczenia, zamiecenia sprawy pod dywan. To jest bardzo poważna historia - komentował Tomczyk podczas konferencji prasowej.
+            <h1 class="title">
+                Add Advert
+            </h1>
+                
+            <form>
+                <label for="them">Them</label><br>
+                <input type="text" name="them" id="them" max="10"><br>
+                <label for="content">
+                    Content
+                </label><br><br>
+                <textarea type="text" name="content" id="content"></textarea><br><br>
+                <div class="buttons">
+                    <button class="btn">
+                        Send
+                    </button>
+                    <button type="reset" class="btn">
+                        Reset
+                    </button>
+                </div>
+            </form>
 
-
-                </p>
-            </div>
         </main>
     </div>
-    <script>
-        function dell(nr){
-            ask = confirm("Are you sure you want to delete this article?")
-            if(ask){
-                location = 'dell.php'
-            }
-        }
-    </script>
 </body>
 </html>
