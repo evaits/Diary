@@ -91,18 +91,15 @@
                         header('Location: addAdvert.php');
                     }
                 }
-                if(isset($_COOKIE['error'])){
-                    echo 'dsa';
-                }
             ?>
 
             <form action='addAdvert.php' method='POST'>
                 <label for="them">Them</label><br>
-                <input type="text" name="them" id="them" max="10"><br>
+                <input onchange="save('them')" type="text" name="them" id="them" max="10"><br>
                 <label for="content">
                     Content
                 </label><br><br>
-                <textarea type="text" name="content" id="content"></textarea><br><br>
+                <textarea onchange="save('content')" type="text" name="content" id="content"></textarea><br><br>
                 <div class="buttons">
                     <button class="btn">
                         Send
@@ -112,8 +109,10 @@
                     </button>
                 </div>
             </form>
-
         </main>
+        
     </div>
+    <div class="modal_error"></div>
+    <script src="../js/error_advert.js"></script>
 </body>
 </html>

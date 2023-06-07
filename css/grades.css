@@ -117,13 +117,14 @@ hr {
 /* MAIN */
 .main {
     padding-top: 11px;
-    margin-left: 380px;
+    margin-left: 320px;
     height: calc(100% - 100px);
 }
 
 .header {
     display: flex;
     margin-bottom: 35px;
+    margin-left: 40px;
 }
 
 .title {
@@ -179,6 +180,11 @@ hr {
 }
 
 /* TABLE */
+.content {
+    overflow-y:scroll;
+    height: 75%;
+}
+
 th {
     font-family: 'Inter';
     font-style: normal;
@@ -227,6 +233,7 @@ th:not(:last-child) {
     margin-bottom: auto;
     margin-right: 10px;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .point:first-child {
@@ -254,6 +261,7 @@ th:not(:last-child) {
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .rok {

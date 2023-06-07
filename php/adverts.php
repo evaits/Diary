@@ -81,7 +81,7 @@
             <div class="content">
                 <?php
                     require 'connect.php';
-                    $adverts = mysqli_query($conn, "SELECT * FROM `adverts`");
+                    $adverts = mysqli_query($conn, "SELECT * FROM `adverts` ORDER BY id DESC;");
                     while($advert = $adverts->fetch_assoc()){
                         echo '
                         <a href="advert_open.php?id='. $advert['id'] .'" class="poster">
