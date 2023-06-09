@@ -32,21 +32,21 @@
             </div>
             <hr>
             <div class="links">
-                <a href="home.html" class="link">
+                <a href="home.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/home.png" alt="img" class="home_img">
                         <p>Home</p>
                     </div>
                 </a>
 
-                <a href="adverts.html" class="link">
+                <a href="adverts.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/adverts.png" alt="img" class="adverts_img">
                         <p>Adverts</p>
                     </div>
                 </a>
                 
-                <a href="grades.html" class="link">
+                <a href="grades.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/grades.png" alt="img" class="grades_img">
                         <p>Grades</p> 
@@ -60,14 +60,14 @@
                     </div>
                 </a>
 
-                <a href="teacherList.html" class="link">
+                <a href="teacherList.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/teacherList.png" alt="img" class="teacherList_img">
                         <p>List of teachers</p>
                     </div>
                 </a>
 
-                <a href="aboutStudent.html" class="active_link link">
+                <a href="aboutStudent.php" class="active_link link">
                     <div class="active_link_container">
                         <img src="../img/menu/student_active.png" alt="img" class="aboutStudent_img">
                         <p>About Student</p>
@@ -83,10 +83,15 @@
                     See Profil
                 </h1>
                 <div class="aboutStudent">
-                    <img src="../img/home/first_svhoolGirl.png" alt="Student">   
+                    <img src="../img/home/first_schoolBoy.png" alt="Student">   
                     <div class="aboutStudent_text">
                         <p>Uczeń</p>
-                        <p class="studentName">Julian Czapski</p>
+                        <?php
+                            require 'connect.php';
+                            $student = mysqli_query($conn, "SELECT * FROM `student` WHERE id = 2;");
+                            $student = mysqli_fetch_array($student);
+                            echo '<p class="studentName">'.$student['firstName']. ' '. $student['lastName'].'</p>' ;
+                        ?>
                     </div>
                 </div>
             </div>
@@ -104,7 +109,9 @@
                             Data Urodzenia
                         </h3>
                         <div class="data">
-                            02.02.2006
+                            <?php
+                                echo $student['birthday'];
+                            ?>
                         </div>
                     </div>
                     <div class="sex">
@@ -112,7 +119,9 @@
                             Płeć
                         </h3>
                         <div class="data">
-                            Mężczyzna
+                            <?php
+                                echo $student['sex'];
+                            ?>
                         </div>
                     </div>
                     <div class="obywatelstwo">
@@ -120,7 +129,9 @@
                             Obywatelstwo
                         </h3>
                         <div class="data">
-                            Polskie
+                            <?php
+                                echo $student['obywatelstwo'];
+                            ?>
                         </div>
                     </div>
                     <div class="mother">
@@ -128,7 +139,9 @@
                             Imię Matki
                         </h3>
                         <div class="data">
-                            Barbara Poniatowska
+                            <?php
+                                echo $student['motherName'];
+                            ?>
                         </div>
                     </div>
 
@@ -141,7 +154,9 @@
                             Imię Ojca
                         </h3>
                         <div class="data">
-                            Jarosław Poniaowski
+                            <?php
+                                echo $student['fatherName'];
+                            ?>
                         </div>
                     </div>
                     <div class="numer">
@@ -149,7 +164,9 @@
                             Numerek
                         </h3>
                         <div class="data">
-                            35
+                            <?php
+                                echo $student['id'];
+                            ?>
                         </div>
                     </div>
                     <div class="klas">
@@ -157,7 +174,9 @@
                             Klasa
                         </h3>
                         <div class="data">
-                            1A
+                            <?php
+                                echo $student['klass'];
+                            ?>
                         </div>
                     </div>
                     <div class="login">
@@ -182,7 +201,9 @@
                             Adres Zamieszkania
                         </h3>
                         <div class="data">
-                            ul. 11 Listopada 6 
+                            <?php
+                                echo $student['adress'];
+                            ?>
                         </div>
                     </div>
                     <div class="pesel">
@@ -190,7 +211,9 @@
                             PESEL
                         </h3>
                         <div class="data">
-                            90032042143
+                            <?php
+                                echo $student['pesel'];
+                            ?>
                         </div>
                     </div>
                     <div class="email">
@@ -198,7 +221,9 @@
                             Adres-Email
                         </h3>
                         <div class="data">
-                            info@gmail.com
+                            <?php
+                                echo $student['email'];
+                            ?>
                         </div>
                     </div>
                     <div class="numer">
@@ -206,7 +231,9 @@
                             Numer Telefonu
                         </h3>
                         <div class="data">
-                            +4888311423
+                            <?php
+                                echo $student['numer'];
+                            ?>
                         </div>
                     </div>
 

@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+if(isset($_POST['subject'])){
+    require 'connect.php';
+    $stmt = mysqli_query($conn, "INSERT INTO `grades`(`subject`, `type`, `period`, `ocena`) VALUES ('".$_POST['subject']."','".$_POST['type']."','".$_POST['period']."','".$_POST['ocena']."')");
+    header('Location: grades.php');
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -86,123 +93,129 @@
                     <img src="../img/home/first_svhoolGirl.png" alt="Student">   
                     <div class="aboutStudent_text">
                         <p>Uczeń</p>
-                        <p class="studentName">Julian Czapski</p>
+                        <?php
+                            require 'connect.php';
+                            $student = mysqli_query($conn, "SELECT * FROM `student` WHERE id = 2;");
+                            $student = mysqli_fetch_array($student);
+                            echo '<p class="studentName">'.$student['firstName']. ' '. $student['lastName'].'</p>' ;
+                        ?>
                     </div>
                 </div>
             </div>
             <div class="content">
                 <table>
                     <tbody>
-                      <tr>
-                        <th>Subjects</th>
-                        <th>Current ratings for Period 1</th>
-                        <th class="end_th">End 1</th>
-                        <th>Current ratings for Period 2</th>
-                        <th class="end_th">End 2</th>
-                        <th>R</th>
-                        
-                      </tr>
-
-                      <?php
-                        function takeSemesterPoint($semester, $count){
-                            if(round($semester/$count, 2) == 1){echo '1';}
-                            elseif(round($semester/$count, 2) > 1.5 and round($semester/$count, 2) <= 1.8){$semester = '1+';}
-                            elseif(round($semester/$count, 2) > 1.8 and round($semester/$count, 2) <= 2.2){$semester = '2-';}
-                            elseif(round($semester/$count, 2) > 2.2 and round($semester/$count, 2) <= 2.5){$semester = '2';}
-                            elseif(round($semester/$count, 2) > 2.5 and round($semester/$count, 2) <= 2.8){$semester = '2+';}
-                            elseif(round($semester/$count, 2) > 2.8 and round($semester/$count, 2) <= 3.2){$semester = '3-';}
-                            elseif(round($semester/$count, 2) > 3.2 and round($semester/$count, 2) <= 3.5){$semester = '3';}
-                            elseif(round($semester/$count, 2) > 3.5 and round($semester/$count, 2) <= 3.8){$semester = '3';}
-                            elseif(round($semester/$count, 2) > 3.8 and round($semester/$count, 2) <= 4.2){$semester = '3';}
-                            elseif(round($semester/$count, 2) > 4.2 and round($semester/$count, 2) <= 4.5){$semester = '3';}
-                            elseif(round($semester/$count, 2) > 4.5 and round($semester/$count, 2) <= 4.8){$semester = '3';}
-                            elseif(round($semester/$count, 2) > 4.8 and round($semester/$count, 2) <= 5.2){$semester = '3';}
-                            elseif(round($semester/$count, 2) > 5.2 and round($semester/$count, 2) <= 5.5){$semester = '3';}
-                            elseif(round($semester/$count, 2) > 5.5 and round($semester/$count, 2) <= 5.8){$semester = '3';}
-                            elseif(round($semester/$count, 2) > 5.8 and round($semester/$count, 2) < 6){$semester = '3';}
-                            else{$semester = '6';}
-                            return $semester;
-                        }
-
-                        require 'connect.php';
-                        $grades = mysqli_query($conn, "SELECT * FROM `grades` ORDER BY subject DESC;");
-                        $array = array('Database', 'Biology', 'Chemistry', 'Systemy baz danych', 'Zastosowania informatyki', 'Język polski', 'Historia', 'Język angielski', 'T. stron i aplikacji', 'Wychowanie fizyczne', 'Religia', 'Historia i teraźniejszość', 'Matematyka', 'Informatyka', 'Edukacja dla bezpieczeństwa', 'Witryny i aplikacje internetowe', 'Filozofia');
-                        for($i = 0; $i<count($array); $i++){
-                            $semester = 0;
-                            $count = 0;
-
-                            echo '
-                                <tr>
-                                    <td class="subjects">'. $array[$i] .'</td>
-                                    <td class="ocena">
-                            ';
-
-                            foreach($grades as $grad){
-                                if($grad['subject'] == $array[$i] and $grad['period'] == 1){
-                                    $semester += intval($grad["ocena"]);
-                                    $count++;
-
-                                    if($grad['type'] == 'kartkówka'){$color = '#FF8C00';}
-                                    elseif($grad['type'] == 'sprawdzian'){$color = '#FF0000';}
-                                    elseif($grad['type'] == 'praca domowa'){$color = '#FFA07A';}
-                                    elseif($grad['type'] == 'praca na lekcji'){$color = '#66CDAA';}
-
-                                    echo '<div class="point" onclick="openInfo(`'.$grad["ocena"].'`, `'.$grad['type'].'`, `'.$grad['subject'].'`, 1)" style="background-color: '. $color .';">'.$grad["ocena"].'</div>';
-                                }
+                        <tr>
+                            <th>Subjects</th>
+                            <th>Current ratings for Period 1</th>
+                            <th class="end_th">End 1</th>
+                            <th>Current ratings for Period 2</th>
+                            <th class="end_th">End 2</th>
+                            <th>R</th>
+                        </tr>
+                        <?php
+                            function takeSemesterPoint($semester, $count){
+                                if($count == 0){$count = 1;}
+                                if(round($semester/$count, 2) == 1){echo '1';}
+                                elseif(round($semester/$count, 2) > 1.5 and round($semester/$count, 2) <= 1.8){$semester = '1+';}
+                                elseif(round($semester/$count, 2) > 1.8 and round($semester/$count, 2) <= 2.2){$semester = '2-';}
+                                elseif(round($semester/$count, 2) > 2.2 and round($semester/$count, 2) <= 2.5){$semester = '2';}
+                                elseif(round($semester/$count, 2) > 2.5 and round($semester/$count, 2) <= 2.8){$semester = '2+';}
+                                elseif(round($semester/$count, 2) > 2.8 and round($semester/$count, 2) <= 3.2){$semester = '3-';}
+                                elseif(round($semester/$count, 2) > 3.2 and round($semester/$count, 2) <= 3.5){$semester = '3';}
+                                elseif(round($semester/$count, 2) > 3.5 and round($semester/$count, 2) <= 3.8){$semester = '3';}
+                                elseif(round($semester/$count, 2) > 3.8 and round($semester/$count, 2) <= 4.2){$semester = '3';}
+                                elseif(round($semester/$count, 2) > 4.2 and round($semester/$count, 2) <= 4.5){$semester = '3';}
+                                elseif(round($semester/$count, 2) > 4.5 and round($semester/$count, 2) <= 4.8){$semester = '3';}
+                                elseif(round($semester/$count, 2) > 4.8 and round($semester/$count, 2) <= 5.2){$semester = '3';}
+                                elseif(round($semester/$count, 2) > 5.2 and round($semester/$count, 2) <= 5.5){$semester = '3';}
+                                elseif(round($semester/$count, 2) > 5.5 and round($semester/$count, 2) <= 5.8){$semester = '3';}
+                                elseif(round($semester/$count, 2) > 5.8 and round($semester/$count, 2) < 6){$semester = '3';}
+                                elseif(round($semester/$count, 2) == 6){$semester = '6';}
+                                else($semester = 1);
+                                return $semester;
                             }
-                                
-                            $semester1 = takeSemesterPoint($semester, $count);
+                            require 'connect.php';
+                            $grades = mysqli_query($conn, "SELECT * FROM `grades` ORDER BY id asc;");
 
-                            echo '
-                                    </td>
-                                    <td onclick="openInfo(`'.$semester1.'`, `Semestrowa`, `'.$array[$i].'`, 1)" class="semester1">
-                                        <div class="end">
-                            
-                                    '.$semester1.'
+                            $array = array('Database', 'Biology', 'Chemistry', 'Systemy baz danych', 'Zastosowania informatyki', 'Język polski', 'Historia', 'Język angielski', 'T. stron i aplikacji', 'Wychowanie fizyczne', 'Religia', 'Historia i teraźniejszość', 'Matematyka', 'Informatyka', 'Edukacja dla bezpieczeństwa', 'Witryny i aplikacje internetowe', 'Filozofia');
 
-                                        </div>
-                                    </td>
+                            for($i = 0; $i<count($array); $i++){
+                                $semester = 0;
+                                $count = 0;
+
+                                echo '
+                                    <tr>
+                                        <td onclick="setValue(`'. $array[$i] .'`)" class="subjects">'. $array[$i] .'</td>
+                                        <td class="ocena">
+                                ';
+
+                                foreach($grades as $grad){
+                                    if($grad['subject'] == $array[$i] and $grad['period'] == 1){
+                                        $semester += intval($grad["ocena"]);
+                                        $count++;
+
+                                        if($grad['type'] == 'kartkówka'){$color = '#FF8C00';}
+                                        elseif($grad['type'] == 'sprawdzian'){$color = '#FF0000';}
+                                        elseif($grad['type'] == 'praca domowa'){$color = '#FFA07A';}
+                                        elseif($grad['type'] == 'praca na lekcji'){$color = '#66CDAA';}
+
+                                        echo '<div class="point" onclick="openInfo(`'.$grad['id'].'`, `'.$grad["ocena"].'`, `'.$grad['type'].'`, `'.$grad['subject'].'`, 1)" style="background-color: '. $color .';">'.$grad["ocena"].'</div>';
+                                    }
+                                }
                                     
-                                    <td class="ocena">
-                            ';
-                            
-                            $semester = 0;
-                            $count = 0;
-                            foreach($grades as $grad){
-                                if($grad['subject'] == $array[$i] and $grad['period'] == 2){
-                                    $semester += intval($grad["ocena"]);
-                                    $count++;
+                                $semester1 = takeSemesterPoint($semester, $count);
 
-                                    if($grad['type'] == 'kartkówka'){$color = '#FF8C00';}
-                                    elseif($grad['type'] == 'sprawdzian'){$color = '#FF0000';}
-                                    elseif($grad['type'] == 'praca domowa'){$color = '#FFA07A';}
-                                    elseif($grad['type'] == 'praca na lekcji'){$color = '#66CDAA';}
-
-                                    echo '<div class="point" onclick="openInfo(`'.$grad["ocena"].'`, `'.$grad['type'].'`, `'.$grad['subject'].'`, `2`)" style="background-color: '. $color .';">'.$grad["ocena"].'</div>';
-                                }
-                            }
-
-                            $semester2 = takeSemesterPoint($semester, $count);
-
-                            echo '
-                                    </td>
-                                    <td onclick="openInfo(`'.$semester2.'`, `Semestrowa`, `'.$array[$i].'`, `2`)" class="semester1">
-                                        <div class="end">
-                                            '.$semester2.'
-                                        </div>
-                                    </td>
-                            ';
-
-                            echo '
-                                    <td onclick="openInfo(`'.takeSemesterPoint((int)$semester1+(int)$semester2, 2).'`, `Roczna`, `'.$array[$i].'`, `Cały rok`)" class="rokOcena">
-                                        <div class="end">
-                                            '. takeSemesterPoint((int)$semester1+(int)$semester2, 2) .'
-                                        </div>
-                                    </td>
+                                echo '
+                                        </td>
+                                        <td onclick="openInfo(`roczna`,`'.$semester1.'`, `Semestrowa`, `'.$array[$i].'`, 1)" class="semester1">
+                                            <div class="end">
                                 
-                                </tr>';
-                        }
-                      ?>
+                                        '.$semester1.'
+
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="ocena">
+                                ';
+                                
+                                $semester = 0;
+                                $count = 0;
+                                foreach($grades as $grad){
+                                    if($grad['subject'] == $array[$i] and $grad['period'] == 2){
+                                        $semester += intval($grad["ocena"]);
+                                        $count++;
+
+                                        if($grad['type'] == 'kartkówka'){$color = '#FF8C00';}
+                                        elseif($grad['type'] == 'sprawdzian'){$color = '#FF0000';}
+                                        elseif($grad['type'] == 'praca domowa'){$color = '#FFA07A';}
+                                        elseif($grad['type'] == 'praca na lekcji'){$color = '#66CDAA';}
+
+                                        echo '<div class="point" onclick="openInfo(`'.$grad['id'].'`, `'.$grad["ocena"].'`, `'.$grad['type'].'`, `'.$grad['subject'].'`, `2`)" style="background-color: '. $color .';">'.$grad["ocena"].'</div>';
+                                    }
+                                }
+
+                                $semester2 = takeSemesterPoint($semester, $count);
+
+                                echo '
+                                        </td>
+                                        <td onclick="openInfo(`semester`,`'.$semester2.'`, `Semestrowa`, `'.$array[$i].'`, 2)" class="semester1">
+                                            <div class="end">
+                                                '.$semester2.'
+                                            </div>
+                                        </td>
+                                ';
+
+                                echo '
+                                        <td onclick="openInfo(`roczna`,`'.takeSemesterPoint((int)$semester1+(int)$semester2, 2).'`, `Roczna`, `'.$array[$i].'`, `Cały rok`)" class="rokOcena">
+                                            <div class="end">
+                                                '. takeSemesterPoint((int)$semester1+(int)$semester2, 2) .'
+                                            </div>
+                                        </td>
+                                    
+                                    </tr>';
+                            }
+                        ?>
                     </tbody>
                   </table>
             </div>
@@ -211,10 +224,10 @@
             <h2>
                 Add grades:
             </h2>
-            <form>
+            <form action="grades.php" method="POST">
                 <label>
                     <h3>Subject:</h3>
-                    <select name="subject">
+                    <select class="subjectInput" name="subject">
                         <option selected value="Database">Database</option>
                         <option value="Biology">Biology</option>                        <option value="Chemistry">Chemistry</option>
                         <option value="Systemy baz danych">Systemy baz danych</option>
@@ -237,15 +250,15 @@
                 <label>
                     <h3>Type:</h3>
                     <select name="type">
-                        <option selected value="Kartkówka">Kartkówka</option>
-                        <option value="Sprawdzian">Sprawdzian</option>
-                        <option value="Praca domowa">Praca domowa</option>
-                        <option value="Praca na lekcji">Praca na lekcji</option>
+                        <option selected value="kartkówka">Kartkówka</option>
+                        <option value="sprawdzian">Sprawdzian</option>
+                        <option value="praca domowa">Praca domowa</option>
+                        <option value="praca na lekcji">Praca na lekcji</option>
                     </select>
                 </label>
                 <label>
                     <h3>Period:</h3>
-                    <select name="ocena">
+                    <select name="period">
                         <option value="1">1 Period</option>
                         <option value="2">2 Period</option>
                     </select>
@@ -277,8 +290,19 @@
         </div>
     </div>
     <script>
-        function openInfo(ocena, type, subject, period){
+        function openInfo(id, ocena, type, subject, period){
             alert("Ocena: " + ocena + "\nType: "+type + "\nSubject: " + subject + "\nPeriod: " + period)
+            if((type != 'Roczna') && (type != 'Semestrowa')){
+                if(confirm('Delete point?')){
+                    if(confirm('Are you sure?')){
+                        location = 'dellPoint.php?id='+id
+                    }
+                }
+            }
+        }
+
+        function setValue(subject){
+            document.querySelector('.subjectInput').value = subject
         }
     </script>
 </body>

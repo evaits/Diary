@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/login.css">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,19 +17,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../img/logo/logo2.png" type="image/x-icon">
     <title>Vulcan - login</title>
 </head>
 <body>
     <div class="container">
         <div class="left">
             <div class="logo">
-                <img src="/img/logo/logo.png" alt="V">
+                <img src="../img/logo/logo.png" alt="V">
                 <p>VULCAN</p>
             </div>
             <div class="form_container">
                 <h1>Welcome back</h1>
                 <p>Please enter your contact details to connect.</p>
-                <form class="form">
+                <form class="form" method="post" action="../php/login.php">
                     <label for="email">
                         Email address
                     </label><br>
@@ -45,7 +46,7 @@
                         <label for="checkbox">Show password</label>
                     </div>
 
-                    <button class="btn">
+                    <button class="btn" onclick="checkData(); return false;">
                         Log in
                     </button>
 
@@ -53,10 +54,30 @@
             </div>
         </div>
         <div class="right">
-            <img src="/img/login/right_img.png" alt="gradient">
+            <img src="../img/login/right_img.png" alt="gradient">
         </div>
     </div>
+    <div class="modal_error"></div>
     <script>
+    // Check Cookie
+        // Error
+        if(document.cookie.split('error=')[1] == 1) {
+            openModal()
+        }
+
+        // Get cookie function
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+        if(getCookie('user') != undefined){
+            location = '../php/home.php'
+        }
+
+    //Password see 
         function changeTypeInput(input){
             if(input.checked){
                 document.querySelector('#pass').setAttribute('type', 'text')
@@ -64,6 +85,46 @@
             else{
                 document.querySelector('#pass').setAttribute('type', 'password')
             }
+        }
+
+    //Check Data 
+        function checkData(){
+            if((document.querySelector('#email').value == '') || (document.querySelector('#pass').value == '')){
+                openModal()
+            }
+            else {
+                document.querySelector('.form').submit()
+            }
+        }
+        
+    // Open Modal
+        function openModal(){
+            const modal = 
+            `<div class="modal_error_bg">
+                <div class="modal_error_header">
+                    Error
+                </div>
+                <hr class="hr">
+                <div class="modal_error_context">
+                    Check the data and try again
+                </div>
+                <hr class="hr">
+                <button class="modal_error_btn"onclick="close_error_modal()">
+                    Ok
+                </button>
+            </div>`
+            document.querySelector('.container').style.pointerEvents = 'none'
+            let modal_error = document.querySelector('.modal_error')
+            modal_error.innerHTML = modal
+            modal_error.style.display = 'block'
+        }
+
+    // Close Modal
+        function close_error_modal() {
+            document.querySelector('.container').style.pointerEvents = 'auto'
+            let modal_error = document.querySelector('.modal_error')
+            modal_error.innerHTML = ''
+            modal_error.style.display = 'none'
         }
     </script>
 </body>

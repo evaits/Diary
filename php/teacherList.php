@@ -32,21 +32,21 @@
             </div>
             <hr>
             <div class="links">
-                <a href="home.html" class="link">
+                <a href="home.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/home.png" alt="img" class="home_img">
                         <p>Home</p>
                     </div>
                 </a>
 
-                <a href="adverts.html" class="link">
+                <a href="adverts.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/adverts.png" alt="img" class="adverts_img">
                         <p>Adverts</p>
                     </div>
                 </a>
                 
-                <a href="grades.html" class="link">
+                <a href="grades.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/grades.png" alt="img" class="grades_img">
                         <p>Grades</p> 
@@ -60,14 +60,14 @@
                     </div>
                 </a>
 
-                <a href="teacherList.html" class="active_link link">
+                <a href="teacherList.php" class="active_link link">
                     <div class="active_link_container">
                         <img src="../img/menu/teacherList_active.png" alt="img" class="teacherList_img">
                         <p>List of teachers</p>
                     </div>
                 </a>
 
-                <a href="aboutStudent.html" class="link">
+                <a href="aboutStudent.php" class="link">
                     <div class="link_container">
                         <img src="../img/menu/student.png" alt="img" class="aboutStudent_img">
                         <p>About Student</p>
@@ -86,99 +86,57 @@
                     <img src="../img/home/first_svhoolGirl.png" alt="Student">   
                     <div class="aboutStudent_text">
                         <p>Uczeń</p>
-                        <p class="studentName">Julian Czapski</p>
+                        <?php
+                            require 'connect.php';
+                            $student = mysqli_query($conn, "SELECT * FROM `student` WHERE id = 2;");
+                            $student = mysqli_fetch_array($student);
+                            echo '<p class="studentName">'.$student['firstName']. ' '. $student['lastName'].'</p>' ;
+                        ?>
                     </div>
                 </div>
             </div>
             <div class="content">
                 <table>
                     <tbody>
-                    <tr>
-                      <th>nr</th>
-                      <th>First name</th>
-                      <th>Last name</th>
-                      <th>Subject</th>
-                      <th>E-mail</th>
-                      <th>Gabinet</th>
-                    </tr>
+                        <tr>
+                        <th>nr</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Subject</th>
+                        <th>E-mail</th>
+                        <th>Gabinet</th>
+                        </tr>
 
-                    <tr>
-                        <td class="nr">
-                            1
-                        </td>
-                        <td class="info">
-                            Dominika
-                        </td>
-                        <td class="info">
-                            Chmielewska
-                        </td>
-                        <td class="info">
-                            Database systems
-                        </td>
-                        <td class="info">
-                            email1@gmail.com
-                        </td>
-                        <td class="info">
-                            32
-                        </td>
-                    </tr>
-                        <td class="nr">
-                            2
-                        </td>
-                        <td class="info">
-                            Liliana
-                        </td>
-                        <td class="info">
-                            Jaworska
-                        </td>
-                        <td class="info">
-                            Informatic
-                        </td>
-                        <td class="info">
-                            user456@gmail.com
-                        </td>
-                        <td class="info">
-                            12
-                        </td>
-                    <tr>
-                        <td class="nr">
-                            3
-                        </td>
-                        <td class="info">
-                            Dominika
-                        </td>
-                        <td class="info">
-                            Chmielewska
-                        </td>
-                        <td class="info">
-                            Database systems
-                        </td>
-                        <td class="info">
-                            email1@gmail.com
-                        </td>
-                        <td class="info">
-                            32
-                        </td>
-                    </tr>
-                        <td class="nr">
-                            4
-                        </td>
-                        <td class="info">
-                            Dominika
-                        </td>
-                        <td class="info">
-                            Chmielewska
-                        </td>
-                        <td class="info">
-                            Database systems
-                        </td>
-                        <td class="info">
-                            email1@gmail.com
-                        </td>
-                        <td class="info">
-                            32
-                        </td>
-                    <tr>
+                        <?php
+                            require 'connect.php';
+                            $teachers = mysqli_query($conn, "SELECT * FROM `teachers` ORDER BY id asc;");
+
+                            foreach($teachers as $teacher){
+                                echo '
+                                <tr>
+                                    <td class="nr">
+                                        '.$teacher['id'].'
+                                    </td>
+                                    <td class="info">
+                                        '.$teacher['firstName'].'
+                                    </td>
+                                    <td class="info">
+                                        '.$teacher['lastName'].'
+                                    </td>
+                                    <td class="info">
+                                        '.$teacher['subject'].'
+                                    </td>
+                                    <td class="info">
+                                        '.$teacher['email'].'
+                                    </td>
+                                    <td class="info">
+                                        '.$teacher['gabinet'].'
+                                    </td>
+                                </tr>
+                                ' 
+                                ;
+                            }
+                        ?>
                 
                     </tbody>
                   </table>
