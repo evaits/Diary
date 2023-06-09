@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Час створення: Чрв 09 2023 р., 13:34
+-- Час створення: Чрв 09 2023 р., 16:25
 -- Версія сервера: 10.4.27-MariaDB
 -- Версія PHP: 8.0.25
 
@@ -40,6 +40,7 @@ CREATE TABLE `student` (
   `adress` varchar(50) NOT NULL,
   `pesel` int(20) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `pass` varchar(255) NOT NULL,
   `numer` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -47,9 +48,9 @@ CREATE TABLE `student` (
 -- Дамп даних таблиці `student`
 --
 
-INSERT INTO `student` (`id`, `firstName`, `lastName`, `birthday`, `sex`, `obywatelstwo`, `motherName`, `fatherName`, `klass`, `adress`, `pesel`, `email`, `numer`) VALUES
-(1, 'John', 'Doe', '1990-01-01', 'Male', 'Polish', 'Jane Doe', 'John Doe', '1A', '123 Main St', 1234567890, 'john.doe@example.com', '123456789'),
-(2, 'Denys', 'Shkaraban', '03.06.2006', 'Mężczyzna', 'Ukraine', 'Mary Smith', 'John Smith', '1A', 'Wał Gocławski 03', 214748364, 'google@gmail.com', '+48883243771');
+INSERT INTO `student` (`id`, `firstName`, `lastName`, `birthday`, `sex`, `obywatelstwo`, `motherName`, `fatherName`, `klass`, `adress`, `pesel`, `email`, `pass`, `numer`) VALUES
+(1, 'John', 'Doe', '1990-01-01', 'Male', 'Polish', 'Jane Doe', 'John Doe', '1A', '123 Main St', 1234567890, 'john.doe@example.com', '4297f44b13955235245b2497399d7a93', '123456789'),
+(2, 'Denys', 'Shkaraban', '03.06.2006', 'Mężczyzna', 'Ukraine', 'Mary Smith', 'John Smith', '1A', 'Wał Gocławski 03', 214748364, 'google@gmail.com', '4297f44b13955235245b2497399d7a93', '+48883243771');
 
 --
 -- Індекси збережених таблиць
