@@ -70,6 +70,13 @@
                         <p>About Student</p>
                     </div>
                 </a>
+
+                <div onclick="logOut('php')" class="link exit">
+                    <div class="link_container">
+                        <img src="../img/menu/exit.png" alt="img" class="aboutStudent_img">
+                        <p>Logout</p>
+                    </div>
+                </div>
     
             </div>
         </div>
@@ -114,5 +121,19 @@
     </div>
     <div class="modal_error"></div>
     <script src="../js/error_advert.js"></script>
+    <script src="../js/exit.js"></script>
+    <script>
+        // Check cookie
+            // Get cookie function
+            function getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                return matches ? decodeURIComponent(matches[1]) : undefined;
+            }
+            if(getCookie('user') == undefined){
+                logOut('php')
+            }
+    </script>
 </body>
 </html>

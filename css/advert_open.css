@@ -72,6 +72,11 @@ hr {
     margin-bottom: auto;
 }
 
+.exit {
+    margin-top: 100px;
+    cursor: pointer;
+}
+
 /* Active */
 .active_link_container{
     width: 100%;

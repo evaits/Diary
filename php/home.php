@@ -21,6 +21,20 @@
     <title>Vulcan - Home</title>
 </head>
 <body>
+    <script src="../js/exit.js"></script>
+    <script>
+        // Check cookie
+            // Get cookie function
+            function getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                return matches ? decodeURIComponent(matches[1]) : undefined;
+            }
+            if(getCookie('user') == undefined){
+                logOut('php')
+            }
+    </script>
     <div class="container">
         <div class="menu">
             <div class="logo">
@@ -87,7 +101,7 @@
                 <p>Uczeń</p>
                 <?php
                     require 'connect.php';
-                    $student = mysqli_query($conn, "SELECT firstName, lastName FROM `student` WHERE id = 2;");
+                    $student = mysqli_query($conn, "SELECT firstName, lastName FROM `student` WHERE id = ". $_COOKIE['user'] .";");
                     $student = mysqli_fetch_array($student);
                     echo '<p class="studentName">'.$student['firstName']. ' '. $student['lastName'].'</p>' ;
 
@@ -113,19 +127,5 @@
             </p>
         </main>
     </div>
-    <script src="../js/exit.js"></script>
-    <script>
-        // Check cookie
-            // Get cookie function
-            function getCookie(name) {
-                var matches = document.cookie.match(new RegExp(
-                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-                ));
-                return matches ? decodeURIComponent(matches[1]) : undefined;
-            }
-            if(getCookie('user') == undefined){
-                logOut('php')
-            }
-    </script>
 </body>
 </html>

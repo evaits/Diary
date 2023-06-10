@@ -24,6 +24,20 @@
     <title>Vulcan | List of Teacher</title>
 </head>
 <body>
+    <script src="../js/exit.js"></script>
+    <script>
+        // Check cookie
+            // Get cookie function
+            function getCookie(name) {
+                var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                ));
+                return matches ? decodeURIComponent(matches[1]) : undefined;
+            }
+            if(getCookie('user') == undefined){
+                logOut('php')
+            }
+    </script>
     <div class="container">
         <div class="menu">
             <div class="logo">
@@ -74,6 +88,12 @@
                     </div>
                 </a>
     
+                <div onclick="logOut('php')" class="link exit">
+                    <div class="link_container">
+                        <img src="../img/menu/exit.png" alt="img" class="aboutStudent_img">
+                        <p>Logout</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -83,12 +103,12 @@
                     List of Teachers
                 </h1>
                 <div class="aboutStudent">
-                    <img src="../img/home/first_svhoolGirl.png" alt="Student">   
+                    <img src="../img/home/first_schoolBoy.png" alt="Student">   
                     <div class="aboutStudent_text">
                         <p>Uczeń</p>
                         <?php
                             require 'connect.php';
-                            $student = mysqli_query($conn, "SELECT * FROM `student` WHERE id = 2;");
+                            $student = mysqli_query($conn, "SELECT * FROM `student` WHERE id = ". $_COOKIE['user'] .";");
                             $student = mysqli_fetch_array($student);
                             echo '<p class="studentName">'.$student['firstName']. ' '. $student['lastName'].'</p>' ;
                         ?>

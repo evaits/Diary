@@ -2,7 +2,7 @@
 <?php
 if(isset($_POST['subject'])){
     require 'connect.php';
-    $stmt = mysqli_query($conn, "INSERT INTO `grades`(`subject`, `type`, `period`, `ocena`) VALUES ('".$_POST['subject']."','".$_POST['type']."','".$_POST['period']."','".$_POST['ocena']."')");
+    $stmt = mysqli_query($conn, "INSERT INTO `grades`(`subject`, `type`, `period`, `ocena`, `student_id`) VALUES ('".$_POST['subject']."','".$_POST['type']."','".$_POST['period']."','".$_POST['ocena']."', '".$_COOKIE['user']."')");
     header('Location: grades.php');
 }
 ?>
@@ -31,6 +31,20 @@ if(isset($_POST['subject'])){
     <title>Vulcan | Grades</title>
 </head>
 <body>
+    <script src="../js/exit.js"></script>
+    <script>
+    // Check cookie
+        // Get cookie function
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+        if(getCookie('user') == undefined){
+            logOut('php')
+        }
+    </script>
     <div class="container">
         <div class="menu">
             <div class="logo">
@@ -80,7 +94,13 @@ if(isset($_POST['subject'])){
                         <p>About Student</p>
                     </div>
                 </a>
-    
+                
+                <div onclick="logOut('php')" class="link exit">
+                    <div class="link_container">
+                        <img src="../img/menu/exit.png" alt="img" class="aboutStudent_img">
+                        <p>Logout</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -90,12 +110,12 @@ if(isset($_POST['subject'])){
                     Your Grades
                 </h1>
                 <div class="aboutStudent">
-                    <img src="../img/home/first_svhoolGirl.png" alt="Student">   
+                    <img src="../img/home/first_schoolBoy.png" alt="Student">   
                     <div class="aboutStudent_text">
                         <p>Uczeń</p>
                         <?php
                             require 'connect.php';
-                            $student = mysqli_query($conn, "SELECT * FROM `student` WHERE id = 2;");
+                            $student = mysqli_query($conn, "SELECT * FROM `student`  WHERE id = ". $_COOKIE['user'] .";");
                             $student = mysqli_fetch_array($student);
                             echo '<p class="studentName">'.$student['firstName']. ' '. $student['lastName'].'</p>' ;
                         ?>
@@ -107,36 +127,37 @@ if(isset($_POST['subject'])){
                     <tbody>
                         <tr>
                             <th>Subjects</th>
-                            <th>Current ratings for Period 1</th>
+                            <th class="thPeriod" onclick="setValue(1, 'period')">Current ratings for Period 1</th>
                             <th class="end_th">End 1</th>
-                            <th>Current ratings for Period 2</th>
+                            <th class="thPeriod" onclick="setValue(2, 'period')">Current ratings for Period 2</th>
                             <th class="end_th">End 2</th>
                             <th>R</th>
                         </tr>
                         <?php
-                            function takeSemesterPoint($semester, $count){
-                                if($count == 0){$count = 1;}
-                                if(round($semester/$count, 2) == 1){echo '1';}
-                                elseif(round($semester/$count, 2) > 1.5 and round($semester/$count, 2) <= 1.8){$semester = '1+';}
-                                elseif(round($semester/$count, 2) > 1.8 and round($semester/$count, 2) <= 2.2){$semester = '2-';}
-                                elseif(round($semester/$count, 2) > 2.2 and round($semester/$count, 2) <= 2.5){$semester = '2';}
-                                elseif(round($semester/$count, 2) > 2.5 and round($semester/$count, 2) <= 2.8){$semester = '2+';}
-                                elseif(round($semester/$count, 2) > 2.8 and round($semester/$count, 2) <= 3.2){$semester = '3-';}
-                                elseif(round($semester/$count, 2) > 3.2 and round($semester/$count, 2) <= 3.5){$semester = '3';}
-                                elseif(round($semester/$count, 2) > 3.5 and round($semester/$count, 2) <= 3.8){$semester = '3';}
-                                elseif(round($semester/$count, 2) > 3.8 and round($semester/$count, 2) <= 4.2){$semester = '3';}
-                                elseif(round($semester/$count, 2) > 4.2 and round($semester/$count, 2) <= 4.5){$semester = '3';}
-                                elseif(round($semester/$count, 2) > 4.5 and round($semester/$count, 2) <= 4.8){$semester = '3';}
-                                elseif(round($semester/$count, 2) > 4.8 and round($semester/$count, 2) <= 5.2){$semester = '3';}
-                                elseif(round($semester/$count, 2) > 5.2 and round($semester/$count, 2) <= 5.5){$semester = '3';}
-                                elseif(round($semester/$count, 2) > 5.5 and round($semester/$count, 2) <= 5.8){$semester = '3';}
-                                elseif(round($semester/$count, 2) > 5.8 and round($semester/$count, 2) < 6){$semester = '3';}
-                                elseif(round($semester/$count, 2) == 6){$semester = '6';}
-                                else($semester = 1);
-                                return $semester;
+                            function takeSemesterPoint($semester1, $count){
+                                if($count == 1){return $semester1;}
+                                elseif($count == 0 or $semester = 0){return 1;}
+                                elseif(round($semester1/$count, 2) == 1){return '1';}
+                                elseif(round($semester1/$count, 2) > 1.5 and round($semester1/$count, 2) <= 1.8){$semester1 = '1+';}
+                                elseif(round($semester1/$count, 2) > 1.8 and round($semester1/$count, 2) <= 2.2){$semester1 = '2-';}
+                                elseif(round($semester1/$count, 2) > 2.2 and round($semester1/$count, 2) <= 2.5){$semester1 = '2';}
+                                elseif(round($semester1/$count, 2) > 2.5 and round($semester1/$count, 2) <= 2.8){$semester1 = '2+';}
+                                elseif(round($semester1/$count, 2) > 2.8 and round($semester1/$count, 2) <= 3.2){$semester1 = '3-';}
+                                elseif(round($semester1/$count, 2) > 3.2 and round($semester1/$count, 2) <= 3.5){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) > 3.5 and round($semester1/$count, 2) <= 3.8){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) > 3.8 and round($semester1/$count, 2) <= 4.2){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) > 4.2 and round($semester1/$count, 2) <= 4.5){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) > 4.5 and round($semester1/$count, 2) <= 4.8){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) > 4.8 and round($semester1/$count, 2) <= 5.2){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) > 5.2 and round($semester1/$count, 2) <= 5.5){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) > 5.5 and round($semester1/$count, 2) <= 5.8){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) > 5.8 and round($semester1/$count, 2) < 6){$semester1 = '3';}
+                                elseif(round($semester1/$count, 2) == 6){$semester1 = '6';}
+                                return $semester1;
                             }
+
                             require 'connect.php';
-                            $grades = mysqli_query($conn, "SELECT * FROM `grades` ORDER BY id asc;");
+                            $grades = mysqli_query($conn, "SELECT * FROM `grades` WHERE `student_id` = '". $_COOKIE['user'] ."' ORDER BY id asc;");
 
                             $array = array('Database', 'Biology', 'Chemistry', 'Systemy baz danych', 'Zastosowania informatyki', 'Język polski', 'Historia', 'Język angielski', 'T. stron i aplikacji', 'Wychowanie fizyczne', 'Religia', 'Historia i teraźniejszość', 'Matematyka', 'Informatyka', 'Edukacja dla bezpieczeństwa', 'Witryny i aplikacje internetowe', 'Filozofia');
 
@@ -146,7 +167,7 @@ if(isset($_POST['subject'])){
 
                                 echo '
                                     <tr>
-                                        <td onclick="setValue(`'. $array[$i] .'`)" class="subjects">'. $array[$i] .'</td>
+                                        <td onclick="setValue(`'. $array[$i] .'`, `subjectInput`)" class="subjects">'. $array[$i] .'</td>
                                         <td class="ocena">
                                 ';
 
@@ -154,7 +175,6 @@ if(isset($_POST['subject'])){
                                     if($grad['subject'] == $array[$i] and $grad['period'] == 1){
                                         $semester += intval($grad["ocena"]);
                                         $count++;
-
                                         if($grad['type'] == 'kartkówka'){$color = '#FF8C00';}
                                         elseif($grad['type'] == 'sprawdzian'){$color = '#FF0000';}
                                         elseif($grad['type'] == 'praca domowa'){$color = '#FFA07A';}
@@ -163,7 +183,8 @@ if(isset($_POST['subject'])){
                                         echo '<div class="point" onclick="openInfo(`'.$grad['id'].'`, `'.$grad["ocena"].'`, `'.$grad['type'].'`, `'.$grad['subject'].'`, 1)" style="background-color: '. $color .';">'.$grad["ocena"].'</div>';
                                     }
                                 }
-                                    
+
+
                                 $semester1 = takeSemesterPoint($semester, $count);
 
                                 echo '
@@ -229,7 +250,8 @@ if(isset($_POST['subject'])){
                     <h3>Subject:</h3>
                     <select class="subjectInput" name="subject">
                         <option selected value="Database">Database</option>
-                        <option value="Biology">Biology</option>                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>                        
+                        <option value="Chemistry">Chemistry</option>
                         <option value="Systemy baz danych">Systemy baz danych</option>
                         <option value="Zastosowania informatyki">Zastosowania informatyki</option>
                         <option value="Język polski">Język polski</option>
@@ -258,7 +280,7 @@ if(isset($_POST['subject'])){
                 </label>
                 <label>
                     <h3>Period:</h3>
-                    <select name="period">
+                    <select class="period" name="period">
                         <option value="1">1 Period</option>
                         <option value="2">2 Period</option>
                     </select>
@@ -289,6 +311,8 @@ if(isset($_POST['subject'])){
             </form>
         </div>
     </div>
+
+    <!-- <script src="../js/exit.js"></script> -->
     <script>
         function openInfo(id, ocena, type, subject, period){
             alert("Ocena: " + ocena + "\nType: "+type + "\nSubject: " + subject + "\nPeriod: " + period)
@@ -301,8 +325,8 @@ if(isset($_POST['subject'])){
             }
         }
 
-        function setValue(subject){
-            document.querySelector('.subjectInput').value = subject
+        function setValue(subject, selector){
+            document.querySelector('.'+ selector).value = subject
         }
     </script>
 </body>

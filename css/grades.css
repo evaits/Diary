@@ -71,6 +71,11 @@ hr {
     margin-bottom: auto;
 }
 
+.exit {
+    margin-top: 100px;
+    cursor: pointer;
+}
+
 /* Active */
 .active_link {
     pointer-events: none;
@@ -200,6 +205,14 @@ th {
 
 th:not(:last-child) {
     border-right: 0.1px white solid;
+}
+
+.thPeriod {
+    cursor: pointer;
+}
+
+.thPeriod:hover {
+    text-decoration: underline;
 }
 
 .subjects {
