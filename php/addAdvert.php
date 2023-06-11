@@ -111,7 +111,7 @@
                     <button class="btn">
                         Send
                     </button>
-                    <button type="reset" class="btn">
+                    <button onclick="localStorage.clear()" type="reset" class="btn">
                         Reset
                     </button>
                 </div>
